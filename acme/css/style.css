@@ -1,0 +1,456 @@
+/* PADDING */
+/* BODY WIDTH */
+/* FONTS */
+@import url("https://fonts.googleapis.com/css?family=Indie+Flower|Shadows+Into+Light&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Handlee&display=swap");
+html {
+  background-image: url(../images/site/background.svg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: "Handlee", cursive;
+  background-size: auto 150%; }
+
+h1, h2, h3, h4, h5 {
+  font-family: "Indie Flower", cursive;
+  margin: 10px 0 0 0; }
+
+figure {
+  margin: 0;
+  padding: 0; }
+
+h1 {
+  font-size: 24pt; }
+
+h2 {
+  font-size: 20pt; }
+
+h3 {
+  font-size: 16pt; }
+
+form {
+  padding: 2% 0;
+  text-align: left;
+  margin-left: 20%;
+  margin-right: 20%;
+  box-shadow: none; }
+
+input {
+  border: 0.5px solid #808080;
+  width: 98%; }
+
+form input {
+  background-color: #ffffff;
+  padding: 8px 1%;
+  box-shadow: none;
+  margin-bottom: 3px; }
+
+.submit {
+  width: 100%;
+  margin-top: 30px;
+  padding: 10px;
+  background-color: #de2226;
+  color: #ffffff; }
+
+label {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 2px 1em 0 0; }
+
+.forms {
+  width: 100%;
+  opacity: 0.7; }
+
+.button {
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+  color: #ffffff; }
+
+header {
+  display: flex;
+  padding: 0 2.5vw;
+  background-color: #ffffff;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center; }
+
+.logo {
+  width: 300px; }
+
+.acct {
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center !important;
+  color: #000000;
+  font-size: 18pt; }
+
+a {
+  color: #000000; }
+
+.acct_icon {
+  width: 30px;
+  padding: 3px;
+  float: left;
+  margin-top: 2px; }
+
+ul {
+  margin: 0; }
+
+footer {
+  border-top: 2px;
+  border-top-color: #000000;
+  border-top-style: solid;
+  background-color: #ffffff;
+  padding: 10px 2.5vw;
+  text-align: center; }
+
+nav {
+  text-align: left;
+  background-color: #de2226;
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Indie Flower", cursive; }
+  nav li a {
+    float: left;
+    display: block;
+    padding: 14px 6px;
+    text-decoration: none;
+    background-color: #de2226;
+    color: #ffffff; }
+    nav li a:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      color: #ffffff; }
+  nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0px;
+    padding-top: 2px;
+    padding-left: 5px;
+    background-color: #de2226; }
+  nav .active {
+    background-color: #ffffff;
+    color: #000000; }
+
+.banner {
+  text-decoration: none;
+  background-image: url(../images/site/rocketfeature.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  display: block;
+  overflow-x: hidden;
+  position: relative;
+  padding: 5%;
+  text-align: center;
+  width: 90%;
+  background-position: center; }
+
+.banner_perks {
+  margin: 0;
+  text-align: left;
+  list-style-type: none;
+  font-size: 0.9em;
+  float: right;
+  padding-left: 10px;
+  color: #990033;
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 50%; }
+  .banner_perks li {
+    margin: 0;
+    font-weight: bold; }
+    .banner_perks li h2 {
+      padding: 5px 0;
+      margin: 0; }
+    .banner_perks li a img {
+      width: auto;
+      padding: 5px 0;
+      text-align: center;
+      height: 30px; }
+
+.recipes {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+  .recipes figure {
+    align-self: center;
+    text-align: center; }
+
+#error {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  align-self: center; }
+
+@media (max-width: 550px) {
+  body {
+    display: grid;
+    background-color: #ffffff;
+    color: #000000;
+    overflow-x: hidden; }
+
+  html {
+    background-image: url(../images/site/background.svg);
+    background-repeat: no-repeat;
+    background-size: auto 150%; }
+
+  .banner_perks {
+    font-size: 0.8em;
+    margin: 0; }
+
+  .banner {
+    padding: 5% 0; }
+
+  main {
+    padding: 0 2.5vw;
+    width: 95%;
+    padding-bottom: 5%; }
+
+  .logo {
+    width: 150px; }
+
+  figure {
+    width: 50%; }
+    figure img {
+      background-color: rgba(128, 128, 128, 0.5);
+      padding: 0 25%; }
+
+  .acct {
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-self: center !important;
+    font-size: 14pt; }
+
+  .acct_icon {
+    width: 20px;
+    padding: 3px; }
+
+  #wrapper {
+    padding: 0 5px; }
+
+  form {
+    margin-left: 0;
+    margin-right: 0; } }
+@media (min-width: 550px) and (max-width: 1550px) {
+  body {
+    display: grid;
+    background-color: #ffffff;
+    color: #000000;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0; }
+
+  html {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); } }
+  @media (min-width: 550px) and (max-width: 1550px) and (min-width: 1550px) {
+    html {
+      background-size: 100% auto; } }
+
+@media (min-width: 550px) and (max-width: 1550px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "banner banner" "area1 area2" "area3 area4" "area5 area6" "area7 area8";
+    padding-bottom: 50px; }
+
+  figure {
+    width: 25%; }
+
+  .banner_perks {
+    text-align: right;
+    font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0); }
+    .banner_perks li {
+      padding: 5px 10px;
+      margin: 0;
+      font-weight: normal; }
+      .banner_perks li h2 {
+        padding: 5px 0;
+        margin: 0; }
+      .banner_perks li a img {
+        width: auto;
+        padding: 5px 0;
+        text-align: center;
+        height: 40px; }
+
+  .recipes {
+    margin: 0;
+    padding: 0;
+    grid-area: area3;
+    justify-content: space-between;
+    grid-column-gap: 50px; }
+    .recipes figure {
+      width: 50%; }
+      .recipes figure img {
+        background-color: rgba(128, 128, 128, 0.5);
+        padding: 0 25%;
+        width: 25%; }
+        .recipes figure img :nth-of-type(1) {
+          grid-area: area1; }
+        .recipes figure img :nth-of-type(2) {
+          grid-area: area2; }
+        .recipes figure img :nth-of-type(3) {
+          grid-area: area5; }
+        .recipes figure img :nth-of-type(4) {
+          grid-area: area6; }
+      .recipes figure figcaption {
+        margin-bottom: 10px; }
+        .recipes figure figcaption :nth-of-type(1) {
+          grid-area: area3; }
+        .recipes figure figcaption :nth-of-type(2) {
+          grid-area: area4; }
+        .recipes figure figcaption :nth-of-type(3) {
+          grid-area: area7; }
+        .recipes figure figcaption :nth-of-type(4) {
+          grid-area: area8; }
+
+  .reviews {
+    grid-area: area4;
+    align-items: stretch;
+    justify-items: stretch;
+    font-size: 16pt; }
+    .reviews h1 {
+      grid-area: area2; }
+
+  main {
+    padding: 0 5%; }
+
+  #wrapper {
+    display: grid;
+    grid-template-areas: "banner banner" "area1 area2" "area3 area4" "area5 area6" "area7 area8"; }
+
+  #review_wrapper {
+    grid-area: area2; }
+
+  #banner_wrapper {
+    grid-area: banner;
+    align-items: stretch;
+    justify-items: stretch; }
+
+  #recipe_wrapper h3 {
+    grid-area: area1; }
+
+  #wrapper {
+    padding: 0 50px; }
+
+  html {
+    width: 80%; } }
+@media (min-width: 1550px) {
+  body {
+    display: grid;
+    background-color: #ffffff;
+    color: #000000;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0; }
+
+  html {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); } }
+  @media (min-width: 1550px) and (min-width: 1550px) {
+    html {
+      background-size: 100% auto; } }
+
+@media (min-width: 1550px) {
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: "banner banner" "area1 area2" "area3 area4" "area5 area6" "area7 area8";
+    padding-bottom: 50px; }
+
+  figure {
+    width: 25%; }
+
+  .banner_perks {
+    text-align: right;
+    font-size: 1.2em;
+    background-color: rgba(255, 255, 255, 0); }
+    .banner_perks li {
+      padding: 5px 10px;
+      margin: 0;
+      font-weight: normal; }
+      .banner_perks li h2 {
+        padding: 5px 0;
+        margin: 0; }
+      .banner_perks li a img {
+        width: auto;
+        padding: 5px 0;
+        text-align: center;
+        height: 40px; }
+
+  .recipes {
+    margin: 0;
+    padding: 0;
+    grid-area: area3;
+    justify-content: space-between;
+    grid-column-gap: 50px; }
+    .recipes figure {
+      width: 50%; }
+      .recipes figure img {
+        background-color: rgba(128, 128, 128, 0.5);
+        padding: 0 25%;
+        width: 25%; }
+        .recipes figure img :nth-of-type(1) {
+          grid-area: area1; }
+        .recipes figure img :nth-of-type(2) {
+          grid-area: area2; }
+        .recipes figure img :nth-of-type(3) {
+          grid-area: area5; }
+        .recipes figure img :nth-of-type(4) {
+          grid-area: area6; }
+      .recipes figure figcaption {
+        margin-bottom: 10px; }
+        .recipes figure figcaption :nth-of-type(1) {
+          grid-area: area3; }
+        .recipes figure figcaption :nth-of-type(2) {
+          grid-area: area4; }
+        .recipes figure figcaption :nth-of-type(3) {
+          grid-area: area7; }
+        .recipes figure figcaption :nth-of-type(4) {
+          grid-area: area8; }
+
+  .reviews {
+    grid-area: area4;
+    align-items: stretch;
+    justify-items: stretch;
+    font-size: 16pt; }
+    .reviews h1 {
+      grid-area: area2; }
+
+  main {
+    padding: 0 5%; }
+
+  #wrapper {
+    display: grid;
+    grid-template-areas: "banner banner" "area1 area2" "area3 area4" "area5 area6" "area7 area8"; }
+
+  #review_wrapper {
+    grid-area: area2; }
+
+  #banner_wrapper {
+    grid-area: banner;
+    align-items: stretch;
+    justify-items: stretch; }
+
+  #recipe_wrapper h3 {
+    grid-area: area1; }
+
+  #wrapper {
+    padding: 0 50px; } }
+.portrait {
+  background-size: auto 150%; }
+
+.landscape {
+  background-size: 100% auto; }
+
+/*# sourceMappingURL=style.css.map */

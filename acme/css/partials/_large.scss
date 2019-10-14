@@ -1,0 +1,137 @@
+//CALLED FROM _MEDIA-SIZE
+body{
+    display: grid;
+    background-color: $color6;
+    color: $color1;
+    overflow-x: hidden;
+    margin: 0;
+    padding:0;
+}
+
+html {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 8px 0 rgba($color: $color1, $alpha: 0.2), 0 6px 20px 0 rgba($color: $color1, $alpha: 0.19);
+
+    @media (min-width: $large) { background-size: 100% auto; }
+}
+
+main {
+    @include gridArea;
+    padding-bottom: 50px;
+}
+
+figure{
+    width: 25%;
+}
+
+.banner_perks{
+    text-align: right;
+    font-size: 1.2em;
+    background-color: rgba($color: $color6, $alpha: 0); //Removing white background used on small layout
+
+    li {
+        padding: 5px 10px;
+        margin: 0;
+        font-weight: normal;
+
+        h2{
+            padding: 5px 0;
+            margin: 0;
+        }
+        a img{
+            width: auto;
+            padding: 5px 0;
+            text-align: center;
+            height: 40px;
+        }
+    }
+}
+
+.recipes{  
+    margin: 0;
+    padding: 0;
+    grid-area: area3;
+    justify-content: space-between;
+    grid-column-gap: 50px;
+
+    figure{
+        width: 50%;
+        
+        img{
+            background-color: rgba($color: $color3, $alpha: 0.5);  
+            padding: 0 25%;
+            width: 25%;
+            :nth-of-type(1){
+                grid-area: area1;
+            }
+            :nth-of-type(2){
+                grid-area: area2;
+            }
+            :nth-of-type(3){
+                grid-area: area5;
+            }
+            :nth-of-type(4){
+                grid-area: area6;
+            }
+        }
+
+        figcaption {
+            margin-bottom: 10px;
+            :nth-of-type(1){
+                grid-area: area3;
+            }
+            :nth-of-type(2){
+                grid-area: area4;
+            }
+            :nth-of-type(3){
+                grid-area: area7;
+            }
+            :nth-of-type(4){
+                grid-area: area8;
+            }
+        }
+         
+        
+    }
+}
+
+.reviews{
+    grid-area: area4;
+    align-items: stretch;
+    justify-items: stretch;
+    font-size: 16pt;
+    h1 {
+        grid-area: area2;
+    }
+}
+
+main {
+    padding: 0 5%;
+}
+
+#wrapper{
+    display: grid;
+    @include areas;
+}
+
+#review_wrapper{
+    grid-area: area2;
+}
+
+#banner_wrapper{
+    grid-area: banner;
+    align-items: stretch;
+    justify-items: stretch;
+}
+
+#recipe_wrapper{
+    h3 {
+        grid-area: area1;
+    }
+}
+
+#wrapper{
+    padding: 0 50px;
+}

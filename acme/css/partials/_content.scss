@@ -1,0 +1,61 @@
+.banner{
+    text-decoration: none;
+    background-image: url(../images/site/rocketfeature.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: block;
+    overflow-x: hidden;
+    position: relative;
+    padding: 5%;
+    text-align: center;
+    width: 90%;
+    background-position: center;
+}
+
+.banner_perks{
+    margin: 0;
+    text-align: left;
+    list-style-type: none;
+    font-size: 0.9em;
+    float: right;
+    padding-left: 10px;
+    color: $color4;
+    background-color: rgba($color: $color6, $alpha: 0.7);
+    width: 50%;
+
+    li {
+        margin: 0;
+        font-weight: bold;
+
+        h2{
+            padding: 5px 0;
+            margin: 0;
+        }
+        a img{
+            width: auto;
+            padding: 5px 0;
+            text-align: center;
+            height: 30px;
+        }
+    }
+}
+
+.recipes{  
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    figure{
+        align-self: center;
+        text-align: center;
+    }
+}
+
+#error{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-self: center;
+}

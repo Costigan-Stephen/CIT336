@@ -1,0 +1,17 @@
+/* PADDING */
+$padding-full: 0.5vw;
+$padding-full-sides: 3.5vw;
+$padding-mobile: 2.5vw;
+$padding-mobile-aside: 3vw;
+
+/* BODY WIDTH */
+$body-width-margins: calc(99% + calc(100vw - 100%));
+$body-width-true: calc(100% + calc(100vw - 100%));
+$body-width-mobile: calc(100% + calc(100vw - 75%));
+$body-width: 100vw;
+
+/* FONTS */
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
+$header-font:'Indie Flower', cursive;
+$body-font: 'Handlee', cursive;

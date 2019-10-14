@@ -1,0 +1,29 @@
+html {
+    background-image: url(../images/site/background.svg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: $body-font;
+    background-size: auto 150%;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: $header-font;
+    margin: 10px 0 0 0;
+}
+
+figure{
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 24pt;
+}
+
+h2 {
+    font-size: 20pt;
+}
+
+h3 {
+    font-size: 16pt;
+}

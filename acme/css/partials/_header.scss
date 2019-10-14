@@ -1,0 +1,34 @@
+header{
+  display: flex;
+  padding: 0 $padding-mobile;
+  background-color: $color6;
+  @include gridHead ("Left")
+}
+
+.logo {
+  width: 300px;
+}
+
+.acct {
+  @include gridHead ("right");
+  align-self: center !important;
+  color: $color1;
+  font-size: 18pt;
+}
+
+a{
+  color: $color1;
+}
+
+.acct_icon {
+  width: 30px;
+  padding: 3px;
+
+  //Repositioning
+  float: left;
+  margin-top: 2px;
+}
+
+ul{
+  margin:0;
+}

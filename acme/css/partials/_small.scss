@@ -1,0 +1,60 @@
+//CALLED FROM _MEDIA-SIZE
+body{
+    display: grid;
+    background-color: $color6;
+    color: $color1;
+    overflow-x: hidden;
+}
+
+html {
+    background-image: url(../images/site/background.svg);
+    background-repeat: no-repeat;
+    background-size: auto 150%;
+}
+
+.banner_perks{
+    font-size: 0.8em;
+    margin: 0;
+}
+
+.banner{
+    padding: 5% 0;
+}
+
+main {
+    padding: 0 $padding-mobile;
+    width: 95%;
+    padding-bottom: 5%;
+}
+
+.logo {
+    width: 150px;
+}
+
+figure{
+    width: 50%;
+    img{
+        background-color: rgba($color: $color3, $alpha: 0.5);  
+        padding: 0 25%;
+    }
+}
+
+.acct {
+    @include gridHead ("right");
+    align-self: center !important;
+    font-size: 14pt;
+}
+  
+.acct_icon {
+    width: 20px;
+    padding: 3px;
+}
+
+#wrapper{
+    padding: 0 5px;
+}
+
+form {
+    margin-left: 0;
+    margin-right: 0;
+}

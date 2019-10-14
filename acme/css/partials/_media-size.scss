@@ -1,0 +1,28 @@
+$medium: 550px;
+$large: 1550px;
+
+@media (max-width: $medium) {
+
+    @import 'small';
+
+}
+
+@media (min-width: $medium) and (max-width: $large) {
+
+    @import 'medium';
+
+}
+
+@media (min-width: $large) {
+
+    @import 'large';
+
+}
+
+.portrait {
+    background-size: auto 150%;
+}
+
+.landscape{
+    background-size: 100% auto;
+}
