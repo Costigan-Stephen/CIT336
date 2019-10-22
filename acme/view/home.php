@@ -1,6 +1,8 @@
 <?php $page="Home"; //Current Navigation?> 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'?>
 
+<?php if (isset($message)) { echo $message; } ?>
+
     <div id="wrapper">
 		<div id="banner_wrapper">
 			<h1>Welcome to ACME</h1>
@@ -10,7 +12,7 @@
 				<li>Quick lighting fuse</li>
 				<li>NHTSA approved seat belts</li>
 				<li>Mobile launch stand included</li>
-				<li><a href="#"><img id="actionbtn" alt="Add to cart button" src="./images/site/iwantit.gif"></a></li>
+				<li><a href="#"><img id="actionbtn" alt="Add to cart button" src="/acme/images/site/iwantit.gif"></a></li>
 				</ul>
 			</div>
 			</div>
@@ -31,10 +33,10 @@
 			<div id="recipe_wrapper">
 			<h3>Featured Recipes</h3>
 			<div class="recipes">
-				<figure><img src="./images/recipes/bbqsand.jpg" alt="Pulled Roadrunner BBQ"><figcaption>Pulled Roadrunner BBQ</figcaption></figure>
-				<figure><img src="./images/recipes/potpie.jpg" alt="Roadrunner Pot Pie"><figcaption>Roadrunner Pot Pie</figcaption></figure>
-				<figure><img src="./images/recipes/soup.jpg" alt="Roadrunner Soup"><figcaption>Roadrunner Soup</figcaption></figure>
-				<figure><img src="./images/recipes/taco.jpg" alt="Roadrunner Tacos"><figcaption>Roadrunner Tacos</figcaption></figure>
+				<figure><img src="/acme/images/recipes/bbqsand.jpg" alt="Pulled Roadrunner BBQ"><figcaption>Pulled Roadrunner BBQ</figcaption></figure>
+				<figure><img src="/acme/images/recipes/potpie.jpg" alt="Roadrunner Pot Pie"><figcaption>Roadrunner Pot Pie</figcaption></figure>
+				<figure><img src="/acme/images/recipes/soup.jpg" alt="Roadrunner Soup"><figcaption>Roadrunner Soup</figcaption></figure>
+				<figure><img src="/acme/images/recipes/taco.jpg" alt="Roadrunner Tacos"><figcaption>Roadrunner Tacos</figcaption></figure>
 			</div>
 			</div>
 	</div>

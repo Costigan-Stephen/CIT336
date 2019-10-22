@@ -19,12 +19,15 @@ $navList .= "'>Home</a></li>";
 
 foreach ($categories as $category) {
   $navList .= "<li><a href='/acme/index.php?action=".urlencode($category['categoryName'])."' class='";
- if($page == $category){
+ if($page == $category && $page){
     $navList .= 'active';
   }
  $navList .= "' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
 }
+
 $navList .= '</ul>';
+
 ?>
 
 <?php echo $navList; ?>
+
