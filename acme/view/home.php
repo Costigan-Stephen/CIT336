@@ -1,7 +1,7 @@
 <?php $page="Home"; //Current Navigation?> 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'?>
 
-<?php if (isset($message)) { echo $message; } ?>
+<?php if(empty($message)){$message="";} getMessage($message); ?>
 
     <div id="wrapper">
 		<div id="banner_wrapper">

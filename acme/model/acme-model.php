@@ -6,7 +6,7 @@ function getCategories(){
     // Create a connection object from the acme connection function
     $db = acmeConnect(); 
     // The SQL statement to be used with the database 
-    $sql = 'SELECT categoryName FROM categories ORDER BY categoryName ASC'; 
+    $sql = 'SELECT categoryName, categoryID FROM categories ORDER BY categoryName ASC'; 
     // The next line creates the prepared statement using the acme connection      
     $stmt = $db->prepare($sql);
     // The next line runs the prepared statement 
@@ -21,9 +21,5 @@ function getCategories(){
     return $categories;
 }
 
-//Purely for testing, will remove at the end
-function postVariable($variable){
-    echo '<pre>' . print_r($variable, true) . '</pre>';
-  exit;
-}
+
 ?>

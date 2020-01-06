@@ -3,27 +3,34 @@
 /*
 ACME CONTROLLER
 */
+// Create or access a Session
+if(empty($_SESSION)) session_start(); 
 
-// Get the database connection file
 require_once 'library/connections.php';
-// Get the acme model for use as needed
 require_once 'model/acme-model.php';
+require_once 'model/products-model.php';
+require_once 'model/uploads-model.php';
+require_once 'library/functions.php';
 
-// echo $navList;
-// exit;
 
-$action = filter_input(INPUT_POST, 'action');
- if ($action == NULL){
-  $action = filter_input(INPUT_GET, 'action');
- }
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+if ($action == NULL) {
+ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+}
 
  switch ($action){
   case 'something':
     break;
 
   default:
-    include 'view/home.php';
-
+    $access = accessLevel('2');
+    if($access == 1){
+      $categoryList = showProductList();
+      redirect($message, 'accounts', 'checklogin');
+    } else {
+      include 'view/home.php';
+    }
+    
 }
 
 ?>

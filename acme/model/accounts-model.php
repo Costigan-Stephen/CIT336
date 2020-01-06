@@ -19,8 +19,7 @@ function sqlConnection($var){
     // The next line sends the array of data back to where the function 
     // was called (this should be the controller) 
     return $return;
-  }
-
+}
 
 function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword){
     // Create a connection object using the acme connection function
@@ -47,96 +46,84 @@ function regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassw
     return $rowsChanged;
 }
 
-function parseData(){
-    // Filter and store the data
-    $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-    $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-    $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-    $clientPassword = filter_input(INPUT_POST, 'clientPassword');
 
-    if(empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)){
-        $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Please provide information for all empty form fields.</h3>';
-        include '../view/register.php';
-        exit; 
-    }
+// Get client data based on an email address
+function getClient($clientEmail){
+    $db = acmeConnect();
+    $sql = 'SELECT clientId, clientFirstname, clientLastname, clientEmail, 
+            clientLevel, clientPassword FROM clients WHERE clientEmail = :email';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':email', $clientEmail, PDO::PARAM_STR);
+    $stmt->execute();
+    $clientData = $stmt->fetch(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
 
-    $email = filter_input(INPUT_POST, 'clientEmail');
-    $pass = filter_input(INPUT_POST, 'clientPassword');
+    return $clientData;
+}
 
-    $emailCheck = validate("clientEmail", $clientEmail);
-
-    //User has already signed up!
-    if($emailCheck){
-        $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Sorry, '.$clientFirstname.', that email is already registered!</h3>';
-        include '../view/register.php';
-        exit;
-    }
-
-    // Send the data to the model
-    $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
-
-    // Check and report the result
-    if($regOutcome === 1){
-        $message = '<h3 style="text-align:center; font-weight: bold;">Thanks for registering, '.$clientFirstname.'. Please use your email and password to login.</h3>';
-        include '../view/login.php';
-        exit;
+//
+// Check for an existing email address
+//
+function checkExistingEmail($clientEmail) {
+    $db = acmeConnect();
+    $sql = 'SELECT clientEmail FROM clients WHERE clientEmail = :email';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':email', $clientEmail, PDO::PARAM_STR);
+    $stmt->execute();
+    $matchEmail = $stmt->fetch(PDO::FETCH_NUM);
+    $stmt->closeCursor();
+    if(empty($matchEmail)){
+        return 0;
     } else {
-        $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Sorry, '.$clientFirstname.', but the registration failed. Please try again.</h3>';
-        include '../view/register.php';
-        exit;
+        return 1;
     }
 }
 
-function loginCheck(){
-
-    $email = filter_input(INPUT_POST, 'clientEmail');
-    $pass = filter_input(INPUT_POST, 'clientPassword');
-
-    $emailCheck = validate("clientEmail", $email);
-    $passCheck = validate("clientPassword", $pass);
-
-  if(empty($emailCheck) || empty($passCheck)){
-    // echo "Email/password does not exist!";
-    $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Invalid Email and Password combination</h3>';
-    include '../view/login.php';
-  } else {
-    header('Location: /acme/products/index.php');
-    $message = '<h3 style="text-align:center; font-weight: bold; color: green;">Login was Successful</h3>';
-    exit; 
-  }
-
+function logout(){
+    //Apparently some overkill is needed here!
+    if(empty($_SESSION)) session_start();
+        
+    unset ($_SESSION['loggedin']);
+    unset ($_SESSION['clientData']);
+    $_SESSION = array();
+    session_destroy();
+        
+    $message = '<h3 class="center bold error">Logged Out Successfully</h3>';
+    redirect($message, 'accounts', 'login');
+    exit;
 }
 
-function validate($colname, $field){
+function updateAccount($clientFirstname, $clientLastname, $clientEmail){
+    $clientId = $_SESSION['clientData']['clientId'];
+    $db = acmeConnect();
+    // The SQL statement to be used with the database
+    $sql = 'UPDATE clients SET clientFirstname = :clientFirstname, 
+      clientLastname = :clientLastname, clientEmail = :clientEmail WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
+    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_STR);
 
-    if (empty($field)){
-        if ($colname == "clientEmail"){ echo "Please enter a valid email"; } 
-        else { echo "Please enter a valid password"; }
-        return $fieldResult = "";
-    }
-    
-    $fieldQuote = "'".$field."'";
-    $colQuote = "`".$colname."`";
-    if ( $colname == "clientEmail" ){ 
-        $search = " LIKE "; 
-    } else { 
-        $search = " = "; 
-    }
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
 
-    $sql = 'SELECT '. $colQuote .' FROM `clients` WHERE '. $colname . $search . $fieldQuote .';';
-    $return = sqlConnection($sql);
-  
-    //Convert SQL to JSON and then parse searched field.
-    $value = json_encode($return);
-    $someArray = json_decode($value, true);
-      
-    if (!empty($return)) {
-        $fieldResult = 1;
-    } else {
-        $fieldResult = '';
-    }
-    // $fieldResult = $someArray[0][$colname];
-    return $fieldResult;
-  }
+function updatePassword($clientPassword){
+    $clientId = $_SESSION['clientData']['clientId'];
+    $db = acmeConnect();
+    // The SQL statement to be used with the database
+    $sql = 'UPDATE clients SET clientPassword = :clientPassword WHERE clientId = :clientId';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
+    $stmt->bindValue(':clientId', $clientId, PDO::PARAM_STR);
+
+    $stmt->execute();
+    $rowsChanged = $stmt->rowCount();
+    $stmt->closeCursor();
+    return $rowsChanged;
+}
 
 ?>

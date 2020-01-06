@@ -83,125 +83,83 @@ function regProduct($CategoryId, $invName, $invDescription, $invImage, $invThumb
   return $rowsChanged;
 }
 
-function productList(){
-
-  // Get the array of categories
-  $categories = getCategories();
-  $return = '';
-  foreach ($categories as $category) {
-    $return .= "<option value='" . strtolower($category['categoryName']) . "'>". $category['categoryName'] ."</option>";
-  }
-  return $return ;
+// Get product information by invId<>
+function getProductInfo($invId){
+  $db = acmeConnect();
+  $sql = 'SELECT * FROM inventory WHERE invId = :invId';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->execute();
+  $prodInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $prodInfo;
 }
 
-function selectFrom($colname="invName", $table="inventory",$sort="invName",$order="ASC"){
-
-  $sql = 'SELECT '.$colname.' FROM '.$table.' ORDER BY '.$sort. ' ASC';  
-  $return = sqlConnection($sql);
-  return $return;
-
+// Get products by categoryId 
+function getProductsByCategoryId($categoryId){ 
+  $db = acmeConnect(); 
+  $sql = ' SELECT * FROM inventory WHERE categoryId = :categoryId'; 
+  $stmt = $db->prepare($sql); 
+  $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT); 
+  $stmt->execute(); 
+  $products = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+  $stmt->closeCursor(); 
+  return $products; 
 }
 
-//Check if category/product exists in database
-function searchForField($colname, $table="inventory", $field, $col2=NULL, $result=0){
-
-  if (empty($col2) || $col2 == NULL){
-    $col2 = $colname;
-  }
-
-    $fieldParse = '\''.$field.'\'';
-    $sql = 'SELECT '. $colname .' FROM '.$table.' WHERE '.$col2.' = '. $fieldParse .';';
-    $fieldResult = '';
-
-    $stmt = sqlConnection($sql);
-    // print_r (array_values($stmt));
-    // printf ($colname);
-    // print_r ($stmt[0][$colname]);
-    // print_r ( array_search( $colname, $stmt ));
-    // exit;
-    $array = array_values($stmt);
-    if (empty($stmt) || $stmt = NULL) {
-      $fieldResult = '0';
-    } else {
-      $fieldResult = $array[0][$colname];
-    }
-    return $fieldResult;
+function getCategoryName($categoryId){ 
+  $db = acmeConnect(); 
+  $sql = ' SELECT categoryName FROM categories WHERE categoryId = :categoryId'; 
+  $stmt = $db->prepare($sql); 
+  $stmt->bindValue(':categoryId', $categoryId, PDO::PARAM_INT); 
+  $stmt->execute(); 
+  $catName = $stmt->fetchAll(PDO::FETCH_ASSOC); 
+  $stmt->closeCursor(); 
+  return $catName; 
 }
 
-//SUBMIT!
-function testCategory(){
+function deleteProduct($invId) {
+  $db = acmeConnect();
+  $sql = 'DELETE FROM inventory WHERE invId = :invId';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invId', $invId, PDO::PARAM_INT);
+  $stmt->execute();
+  $rowsChanged = $stmt->rowCount();
+  $stmt->closeCursor();
+  return $rowsChanged;
+}
 
-  $categoryName = filter_input(INPUT_POST, 'categoryName');
+function getProductsByCategory($categoryName){
+  $db = acmeConnect();
+  $sql = 'SELECT * FROM inventory WHERE categoryId IN (SELECT categoryId FROM categories WHERE categoryName = :categoryName) ';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':categoryName', $categoryName, PDO::PARAM_STR);
+  $stmt->execute();
+  $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $products;
+}
 
-  if(empty($categoryName)){
-    $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Please enter a category name!.</h3>';
-      include '../view/new-cat.php';
-      exit; 
-  }
+function getProduct($invName){
+  $db = acmeConnect();
+  $sql = 'SELECT * FROM inventory WHERE invName = :invName';
+  $stmt = $db->prepare($sql);
+  $stmt->bindValue(':invName', $invName, PDO::PARAM_STR);
+  $stmt->execute();
+  $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $stmt->closeCursor();
+  return $products;
+}
+
+function getProductBasics() {
+  $db = acmeConnect();
+  $sql = 'SELECT invName, invId FROM inventory ORDER BY invId ASC';
   
-  $exists = searchForField("categoryName", "categories", $categoryName);
-
-  if(empty($exists)){
-    // echo "good to go";
-    $regOutcome = regCat($categoryName);
-    $message = '<h3 style="text-align:center; font-weight: bold; color: green;">Category Added Successfully</h3>';
-    include '../view/new-cat.php';
-  } else {
-    $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Category already exists</h3>';
-    include '../view/new-cat.php';
-    exit; 
-  }
-  
+  $stmt = $db->prepare($sql);
+  $stmt -> execute();
+  $products = $stmt->fetchAll();
+  $stmt -> closeCursor();
+  return $products;
 }
 
-function testProduct(){
-  // Filter and store the data
-  $invCategory = filter_input(INPUT_POST, 'invCategory');
-  $invName = filter_input(INPUT_POST, 'invName');
-  $invDescription = filter_input(INPUT_POST, 'invDescription');
-  $invImage = filter_input(INPUT_POST, 'invImage');
-  $invThumbnail = filter_input(INPUT_POST, 'invThumbnail');
-  $invPrice = filter_input(INPUT_POST, 'invPrice');
-  $invStock = filter_input(INPUT_POST, 'invStock');
-  $invSize = filter_input(INPUT_POST, 'invSize');
-  $invWeight = filter_input(INPUT_POST, 'invWeight');
-  $invLocation = filter_input(INPUT_POST, 'invLocation');
-  $invVendor = filter_input(INPUT_POST, 'invVendor');
-  $invStyle = filter_input(INPUT_POST, 'invStyle');
-
-
-  if ($invCategory == ""){
-    $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Please select a Category!</h3>';
-      include '../view/new-prod.php';
-      exit; 
-  }
-
-  if(empty($invCategory) || empty($invName) || empty($invDescription) || empty($invImage) || empty($invThumbnail) || empty($invPrice) || empty($invStock) || empty($invSize) || empty($invWeight) || empty($invLocation) || empty($invVendor) || empty($invStyle)){
-      $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Please provide information for all empty form fields.</h3>';
-      include '../view/new-prod.php';
-      exit; 
-  }
-
-  //GET Cat ID
-  $CategoryId = searchForField('categoryId', 'categories', $invCategory, 'categoryName', 1);
-
-  if(empty($CategoryId)) {
-    $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Category Error.</h3>';
-    include '../view/new-prod.php';
-    exit; 
-}
-  // Send the data to the model
-  $regOutcome = regProduct($CategoryId, $invName, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invSize, $invWeight, $invLocation, $invVendor, $invStyle);
-
-  // Check and report the result
-  if($regOutcome === 1){
-      $message = '<h3 style="text-align:center; font-weight: bold;">Item Added Successfully!</h3>';
-      include '../view/new-prod.php';
-      exit;
-  } else {
-      $message = '<h3 style="text-align:center; font-weight: bold; color: red;">Something went wrong, Please try again!</h3>';
-      include '../view/new-prod.php';
-      exit;
-  }
-}
 ?>

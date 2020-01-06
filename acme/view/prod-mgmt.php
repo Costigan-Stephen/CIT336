@@ -1,13 +1,26 @@
+<?php $page = "Products"; //Current Navigation ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/header.php'?>
-    <form class="textblock" style="text-align:center;">
+<?php CheckForLoggedIn() ?>
 
-        <?php if (isset($message)) { echo $message; } ?>
-        
-        <h1>Product Management</h1>
-        <p>Welcome to the product management page.  Please choose an option below:</p>
-        <ul style="list-style-type:none; list-style:none; padding: 0;">
-            <li><a href="javascript:" onclick="window.location.href='/acme/products/index.php?action=newCat'">Add a new Category</a></li>
-            <li><a href="javascript:" onclick="window.location.href='/acme/products/index.php?action=newProd'">Add a new Product</a></li>
-        </ul>
-    </form>
+<div> <?php if(empty($message)){$message="";} getMessage($message); ?> </div>
+    <div class="textblock margins center">
+        <?php
+            if (isset($categoryList)) { 
+                echo '<h2>Products By Category</h2>'; 
+                echo '<p>Choose a category to see those products</p>'; 
+                echo $categoryList; 
+            }
+        ?>
+        <noscript>
+            <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
+        </noscript>
+        <table id="productsDisplay" class="prodtable margins"></table>
+
+        <?php buttonGenerate ('products', 'newCat', 'Add a new Category'); ?>
+        <?php buttonGenerate ('products', 'newProd', 'Add a new Product'); ?>
+        <?php buttonGenerate ('uploads', 'defaultView', 'Upload Images'); ?>
+
+        <?php buttonGenerate ('accounts', 'checklogin', 'Back to Admin', 'invert'); ?>
+</div>
+<script src="../js/products.js"></script>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/acme/common/footer.php'?>
