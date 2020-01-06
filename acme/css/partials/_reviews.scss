@@ -1,0 +1,47 @@
+.review-display{
+    margin: 0;
+    padding: 0;
+    margin: 2px 1%;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    list-style-type: none;
+    border: 1px $color1 solid;
+}
+   
+.review-display li{
+    margin-bottom: .5em;
+    border: 1px #ccc solid;
+    list-style-type: none;
+    flex: 1 1 auto;
+    padding: 1%;
+    // margin: 1%;
+    align-items: center;
+}
+
+.review-display{
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-self: flex-end;
+}
+   
+.review-display li{
+    max-width: 200px;
+    flex: 1 0 auto;
+    text-align: center;
+    max-height: 400px;
+}
+
+.reviewHead{
+    border-bottom: 1px $color1 solid;
+    background-color: rgba($color: $color5, $alpha: 0.2);
+    padding: 10px;
+}
+
+.reviewBody{
+    padding: 10px;
+}
+
+.right{
+    text-align: right;
+}

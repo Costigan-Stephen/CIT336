@@ -2,13 +2,16 @@ html {
     background-image: url(../images/site/background.svg);
     background-repeat: no-repeat;
     background-attachment: fixed;
-    font-family: $body-font;
     background-size: auto 150%;
+}
+
+main {
+    font-family: $body-font;
 }
 
 h1, h2, h3, h4, h5 {
     font-family: $header-font;
-    margin: 10px 0 0 0;
+    // margin: 10px 0 0 0;
 }
 
 figure{
@@ -17,6 +20,7 @@ figure{
 }
 
 h1 {
+    margin: 0;
     font-size: 24pt;
 }
 
@@ -26,6 +30,7 @@ h2 {
 
 h3 {
     font-size: 16pt;
+    margin-bottom: 0;
 }
 
 .full{
@@ -37,5 +42,15 @@ h3 {
 }
 
 .center{
-    text-align: center;
+    text-align: center!important;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.headingSection{
+    background-color: $color5;
+    color: $color6;
+    width: 100%;
 }

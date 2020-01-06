@@ -11,7 +11,13 @@ $body-width-mobile: calc(100% + calc(100vw - 75%));
 $body-width: 100vw;
 
 /* FONTS */
-@import url('https://fonts.googleapis.com/css?family=Indie+Flower|Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Staatliches&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Handlee&display=swap');
-$header-font:'Indie Flower', cursive;
+@import url('https://fonts.googleapis.com/css?family=Play&display=swap');
+
+$header-font: 'Staatliches', cursive;
 $body-font: 'Handlee', cursive;
+$footer-font: 'Play', sans-serif;
+
+$margins: 10%;
+$content: calc(100% - #{$margins} * 2);

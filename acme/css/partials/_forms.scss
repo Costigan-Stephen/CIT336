@@ -1,14 +1,39 @@
 .textblock {
-    padding: 2% 0;
     text-align: left;
     margin-left: 20%;
     margin-right: 20%;
     box-shadow: none;
+    margin: 0;
+    padding-bottom: 0;
 }
 
 input{
     border:0.5px solid $color3;
     width: 98%;
+}
+
+.categories{
+    padding: 2%;
+    text-align: left;
+    margin-left: 20%;
+    margin-right: 20%;
+    box-shadow: none;
+    margin: 0;
+}
+
+input:required:invalid{
+    background-image: url('/acme/images/icons/invalid.png');
+    background-size: 25px;
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-color: rgba($color: $color5, $alpha: 0.2);
+}
+input:required:valid{
+    background-image: url('/acme/images/icons/valid.png');
+    background-size: 25px;
+    background-position: right top;
+    background-repeat: no-repeat;
+    background-color: rgba($color: $color7, $alpha: 0.2); 
 }
 
 form input, .dropdown{
@@ -24,6 +49,17 @@ form input, .dropdown{
     padding: 10px;
     background-color: $color5;
     color: $color6;
+    font-family: $header-font;
+    font-size: larger;
+    letter-spacing: 1px;
+}
+
+.extraSpace {
+    margin: 15px 0 !important;
+}
+
+.submit:hover{
+    background-color: rgba($color: $color5, $alpha: 0.8); 
 }
 
 label {
@@ -41,11 +77,45 @@ label {
 .button{
     width: 100%;
     padding: 10px;
+    margin: 0;
     background-color: $color1;
     color: $color6;
+    font-family: $header-font;
+    font-size: larger;
+    letter-spacing: 1px;
 }
+
+.button:hover{
+    background-color: $color3;
+}
+
+.invert{
+    margin: 15px 0;
+    background-color: $color6 !important;
+    color: $color1 !important;
+}
+
+.invert:hover{
+    color: $color3 !important;
+}
+
 
 .commentarea{
     height: 80px;
     width: 99.5%;
+}
+
+.subtext{
+    font-size: smaller;
+    font-style: italic;
+}
+
+.margins{
+    margin-left: $margins;
+    margin-right: $margins;
+}
+
+.noBorder{
+    border: none;
+    border-style: none;
 }

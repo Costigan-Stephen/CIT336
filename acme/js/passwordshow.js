@@ -1,10 +1,10 @@
-function passwordShow() {
-    var x = document.getElementById("clientPassword");
+function passwordShow($field="clientPassword", $e="showhide") {
+    var x = document.getElementById($field);
     if (x.type === "password") {
       x.type = "text";
-      document.getElementById("showhide").innerHTML = "Hide Password";
+      document.getElementById($e).innerHTML = "Hide Password";
     } else {
       x.type = "password";
-      document.getElementById("showhide").innerHTML = "Show Password";
+      document.getElementById($e).innerHTML = "Show Password";
     }
   }

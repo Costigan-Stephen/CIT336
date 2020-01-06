@@ -1,0 +1,24 @@
+.showGrid{
+    display: grid;
+    @include areas;
+}
+
+.bannerareas{
+    grid-area: banner;
+}
+
+.area1{
+    grid-area: area1;
+}
+
+.area2{
+    grid-area: area2;
+}
+
+.area3{
+    grid-area: area3;
+}
+
+.area4{
+    grid-area: area4;
+}

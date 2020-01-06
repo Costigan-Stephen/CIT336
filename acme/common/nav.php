@@ -1,33 +1,20 @@
 <!-- HEADER -->
 <header><img src="/acme/images/site/logo.gif" class="logo" alt="Acme logo">
-<a href="/acme/accounts/index.php?action=login"><div class="acct"><img src="/acme/images/site/account.gif" class="acct_icon" alt="Account Icon">My Account</div></a></header>
 
-<?php 
-// Build a navigation bar using the $categories array
+    <div class="acct">
+        
+        <?php   $linkImg = "<a href='/acme/accounts/index.php?action=checklogin'><img src='/acme/images/site/account.gif' class='acct_icon' alt='Account Icon'></a>".add_spaces(1) ;
+            if(isset($_SESSION['loggedin'])){
+                $user = "<a href='/acme/accounts/index.php?action=checklogin' class='welcome'>Welcome ".$_SESSION['clientData']['clientFirstname']."</a>".add_spaces(1);
+                echo $user.$linkImg."<a href='/acme/accounts/index.php?action=logout' class='acct_nav'>Log Out</a>";
+            }else{ 
+                echo $linkImg."<a href='/acme/accounts/index.php?action=checklogin' class='acct_nav'>My Account</a>";
+            }
+        ?>
+                   
+    </div>
+    
+</header>
 
-// Get the array of categories
-$categories = getCategories();
-
-// // var_dump($categories);
-// postVariable($categories);
-$navList = '<ul>';
-$navList .= "<li><a href='/acme/index.php' title='View the Acme home page' class='";
-if($page=="Home"){
-  $navList .= 'active';
-}
-$navList .= "'>Home</a></li>";
-
-foreach ($categories as $category) {
-  $navList .= "<li><a href='/acme/index.php?action=".urlencode($category['categoryName'])."' class='";
- if($page == $category && $page){
-    $navList .= 'active';
-  }
- $navList .= "' title='View our $category[categoryName] product line'>$category[categoryName]</a></li>";
-}
-
-$navList .= '</ul>';
-
-?>
-
-<?php echo $navList; ?>
+<?php if(empty($page)){$page="";} echo navBar($page); ?>
 

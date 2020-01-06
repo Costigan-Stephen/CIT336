@@ -10,12 +10,14 @@ $large: 1550px;
 @media (min-width: $medium) and (max-width: $large) {
 
     @import 'medium';
+    @import 'grid-areas';
 
 }
 
 @media (min-width: $large) {
 
     @import 'large';
+    @import 'grid-areas';
 
 }
 
